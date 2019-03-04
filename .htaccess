@@ -1,0 +1,8 @@
+RewriteEngine On
+RedirectMatch 404 /\.git
+RedirectMatch 404 /\vendor
+RedirectMatch 404 /\composer.json
+RedirectMatch 404 /\composer.lock
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/?$ index.php?template=$1 [L,QSA]
