@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: application/json');
+
 class EndPoints
 {
 	var $Name;
