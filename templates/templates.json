@@ -1513,5 +1513,22 @@
 				"r":0
 			}
 		]
+	},
+	{
+		"name":"delete",
+		"image":"delete.png",
+		"rotate":0,
+		"under":1,
+		"sources":1,
+		"position":
+		[
+			{
+				"x":108,
+				"y":121,
+				"w":177,
+				"h":177,
+				"r":0
+			}
+		]
 	}
 ]
