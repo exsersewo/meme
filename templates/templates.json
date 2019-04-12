@@ -1530,5 +1530,22 @@
 				"r":0
 			}
 		]
+	},
+	{
+		"name":"bad_memes",
+		"image":"bad_memes.png",
+		"rotate":0,
+		"under":1,
+		"sources":1,
+		"position":
+		[
+			{
+				"x":10,
+				"y":203,
+				"w":692,
+				"h":690,
+				"r":0
+			}
+		]
 	}
 ]
