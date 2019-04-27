@@ -1547,5 +1547,22 @@
 				"r":0
 			}
 		]
+	},
+	{
+		"name":"ahshit",
+		"image":"ahshit.png",
+		"rotate":0,
+		"under":1,
+		"sources":1,
+		"position":
+		[
+			{
+				"x":0,
+				"y":0,
+				"w":360,
+				"h":207,
+				"r":0
+			}
+		]
 	}
 ]
