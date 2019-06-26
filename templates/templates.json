@@ -1564,5 +1564,33 @@
 				"r":0
 			}
 		]
+	},
+	{
+		"name": "trust",
+		"image": "trust-with-my-life-5865c1241588a.png",
+		"rotate": 0,
+		"under": 1,
+		"sources": 1,
+		"position":[{
+			"x":82,
+			"y":37,
+			"w":300,
+			"h":300,
+			"r":-1
+		}]
+	},
+	{
+		"name": "jojo-point",
+		"image": "point.png",
+		"rotate":0,
+		"under":1,
+		"sources":1,
+		"position":[{
+			"x":2271,
+			"y":1001,
+			"w":1074,
+			"h":615,
+			"r":5
+		}]
 	}
 ]
