@@ -619,7 +619,7 @@
 	{
 		"name":"yugi",
 		"image":"yugis-best-card-57fccc0856178.png",
-		"rotate":0,
+		"rotate":-1,
 		"under":1,
 		"sources":1,
 		"position":
@@ -629,7 +629,7 @@
 				"y":285,
 				"w":725,
 				"h":573,
-				"r":0
+				"r":30
 			}
 		]
 	},
@@ -1400,10 +1400,10 @@
 		"position":
 		[
 			{
-				"x":313,
-				"y":90,
-				"w":232,
-				"h":232,
+				"x":316,
+				"y":96,
+				"w":223,
+				"h":221,
 				"r":0
 			}
 		]
@@ -1591,6 +1591,20 @@
 			"w":1074,
 			"h":615,
 			"r":5
+		}]
+	},
+	{
+		"name": "disappointment",
+		"image": "disappointment.png",
+		"rotate": 0,
+		"under": 1,
+		"sources": 1,
+		"position":[{
+			"x":352,
+			"y":219,
+			"w":100,
+			"h":71,
+			"r":0
 		}]
 	}
 ]
