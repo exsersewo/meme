@@ -28,10 +28,15 @@ function cmp($a, $b)
 {
     return strcmp($a->Name, $b->Name);
 }
+function cmp2($a, $b)
+{
+    return strcmp($a->name, $b->name);
+}
 
-$example = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[QUERY_STRING]/ahegao/?source1=https://pngimage.net/wp-content/uploads/2018/06/pog-champ-png-3.png";
+$example = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/fun/meme/ahegao/?source1=https://pngimage.net/wp-content/uploads/2018/06/pog-champ-png-3.png";
 
 usort($availableendpoints, "cmp");
+usort($templates, "cmp2");
 
 ($_SERVER['QUERY_STRING'] == 'endpoints') ? die(json_encode(array('Successful' => true, 'example' => $example, 'available-templates' => $availableendpoints))) : null;
 
@@ -88,7 +93,71 @@ function doCheckURL()
 		return;
 	}
 
-	die(json_encode(array('Successful' => true, 'example' => $example, 'available-templates' => $availableendpoints)));
+    displayPrettyFront();
+}
+
+function displayPrettyFront()
+{
+    global $templates;
+    header('Content-Type: text/html');
+    ?>
+<html>
+<head>
+<style type="text/css">
+body {
+    margin:0;
+    padding:0;
+}
+table {
+    margin:0 auto;
+}
+tr{
+    color:white;
+    text-align:center;
+}
+tr:first-child{
+    background-color:#111;
+}
+tr:nth-child(odd){
+    background-color:#555;
+}
+tr:nth-child(even){
+    background-color:#333;
+}
+tr a{
+    color:white;
+}
+</style>
+</head>
+<body>
+<table>
+<tr>
+<td>Name</td><td>Sources Required</td><td>Usage</td><td>Template</td>
+</tr>
+<?php
+    foreach($templates as $endpoint)
+    {
+        $currUrl = 'https://'.$_SERVER['SERVER_NAME'].'/fun/meme/'.$endpoint->name.'/?source1=https://vignette.wikia.nocookie.net/internet-meme/images/6/6e/Pogchamp.jpg';
+        IF($endpoint->sources > 1)
+        {
+            for($x = 0; $x < $endpoint->sources; $x++)
+            {
+                $currUrl = $currUrl.'&source'.($x+1).'=https://vignette.wikia.nocookie.net/internet-meme/images/6/6e/Pogchamp.jpg';
+            }
+        }
+        ?>
+            <tr>
+                <td><?=$endpoint->name?></td>
+                <td><?=$endpoint->sources?></td>
+                <td><a href="<?=$currUrl?>"><?=$currUrl?></a></td>
+                <td><img src="https://<?=$_SERVER['SERVER_NAME']?>/fun/meme/templates/images/<?=$endpoint->image?>" width="320" />
+            </tr>
+        <?php
+    }
+?>
+</body>
+</html>
+    <?php
 }
 
 function doError($reason)
