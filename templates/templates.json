@@ -19,17 +19,17 @@
 	{
 		"name":"home-sweet-home",
 		"image":"home-sweet-home-5a4ab71646f1b.png",
-		"rotate":1,
+		"rotate":0,
 		"under":1,
 		"sources":1,
 		"position":
 		[
 			{
-				"x":25,
-				"y":475,
-				"w":325,
-				"h":405,
-				"r":8
+				"x":91,
+				"y":487,
+				"w":248,
+				"h":429,
+				"r":0
 			}
 		]
 	},
@@ -231,15 +231,15 @@
 			{
 				"x":50,
 				"y":118,
-				"w":279,
-				"h":279,
+				"w":280,
+				"h":309,
 				"r":0
 			},
 			{
 				"x":470,
 				"y":118,
-				"w":279,
-				"h":279,
+				"w":280,
+				"h":309,
 				"r":0
 			}
 		]
@@ -619,7 +619,7 @@
 	{
 		"name":"yugi",
 		"image":"yugis-best-card-57fccc0856178.png",
-		"rotate":-1,
+		"rotate":1,
 		"under":1,
 		"sources":1,
 		"position":
@@ -1434,17 +1434,17 @@
 		"position":
 		[
 			{
-				"x":103,
-				"y":96,
-				"w":114,
-				"h":141,
+				"x":92,
+				"y":92,
+				"w":151,
+				"h":203,
 				"r":0
 			},
 			{
-				"x":221,
-				"y":464,
-				"w":107,
-				"h":118,
+				"x":174,
+				"y":432,
+				"w":169,
+				"h":193,
 				"r":0
 			}
 		]
@@ -1476,7 +1476,7 @@
 	{
 		"name":"oldmancloud",
 		"image": "oldmancloud.png",
-		"rotate":-1,
+		"rotate":0,
 		"under":1,
 		"sources":1,
 		"position":
@@ -1486,7 +1486,7 @@
 				"y":82,
 				"w":325,
 				"h":270,
-				"r":5
+				"r":0
 			}
 		]
 	},
@@ -1604,6 +1604,20 @@
 			"y":219,
 			"w":100,
 			"h":71,
+			"r":0
+		}]
+	},
+	{
+		"name": "savetheworld",
+		"image": "to-save-the-world-5945e4eb0298f.jpg",
+		"rotate": 0,
+		"under": 0,
+		"sources": 1,
+		"position":[{
+			"x":775,
+			"y":806,
+			"w":365,
+			"h":365,
 			"r":0
 		}]
 	}
