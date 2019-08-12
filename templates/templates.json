@@ -1625,7 +1625,7 @@
 		"name": "smile",
 		"image": "67765645_355276032091743_8357909824331055104_n.png",
 		"rotate": 0,
-		"under": 0,
+		"under": 1,
 		"sources": 1,
 		"position": [{
 			"x":460,
