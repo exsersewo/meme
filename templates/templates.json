@@ -1634,5 +1634,25 @@
 			"h":447,
 			"r":0
 		}]
+	},
+	{
+		"name": "alwaysgoforthis",
+		"image": "alwaysgoforthis.png",
+		"rotate": 0,
+		"under": 1,
+		"sources": 2,
+		"position": [{
+			"x":0,
+			"y":0,
+			"w":442,
+			"h":396,
+			"r":0
+		},{
+			"x":0,
+			"y":405,
+			"w":484,
+			"h":384,
+			"r":0
+		}]
 	}
 ]
