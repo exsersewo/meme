@@ -1654,5 +1654,33 @@
 			"h":384,
 			"r":0
 		}]
+	},
+	{
+		"name": "commodore",
+		"image": "commodore-64-59c065fc4e3f9-overlay.png",
+		"rotate": 0,
+		"under": 1,
+		"sources": 1,
+		"position": [{
+			"x":353,
+			"y":109,
+			"w":348,
+			"h":260,
+			"r":0
+		}]
+	},
+	{
+		"name": "helloilikemoney",
+		"image": "helloilikemoney.png",
+		"rotate": 0,
+		"under": 1,
+		"sources": 1,
+		"position": [{
+			"x":185,
+			"y":175,
+			"w":150,
+			"h":150,
+			"r":0
+		}]
 	}
 ]
