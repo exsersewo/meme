@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+  color: #111;
+}
+table {
+  margin: 0 auto;
+}
+tr {
+  color: white;
+  text-align: center;
+}
+tr:first-child {
+  background-color: #111;
+}
+tr:nth-child(odd) {
+  background-color: #555;
+}
+tr:nth-child(even) {
+  background-color: #333;
+}
+tr a {
+  color: white;
+}
+pre {
+  display: none;
+}
