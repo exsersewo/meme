@@ -1,64 +1,133 @@
-const express = require("express");
-const templates = require("./data/templates.json");
-const baseFolder = "/images/";
-const defaultImage =
-  "https://vignette.wikia.nocookie.net/internet-meme/images/6/6e/Pogchamp.jpg";
-const app = express();
-const port = 4000;
-const appUrl = function (req) {
-  return req.protocol + "://" + req.get("host");
-};
+require("dotenv").config();
+const express = require("express"),
+  modifyimage = require("./imageManipulation"),
+  emptyRequest = require("./default"),
+  app = express(),
+  port = process.env.SKMEME_PORT || 4000;
 
-function getEmptyRequest(req) {
-  return (
-    '<html><head><link rel="stylesheet" href="/css/home.css"></head><body><table>' +
-    "<tr><td>Name</td><td>Sources Required</td><td>Usage</td><td>Template</td></tr>" +
-    templates.map((x) => {
-      var url = "/template/" + x.name + "/?";
+//https://stackoverflow.com/a/1179377
+function strcmp(str1, str2) {
+  return str1 == str2 ? 0 : str1 > str2 ? 1 : -1;
+}
 
-      for (var z = 1; z <= x.sources; z++) {
-        url += "source" + z + "=" + defaultImage;
+var templates = require("./data/templates.json");
 
-        if (z != x.sources) {
-          url += "&";
-        }
-      }
+templates = templates.sort((x, y) => strcmp(x.name, y.name));
 
-      return (
-        "<tr><td>" +
-        x.name +
-        "</td>" +
-        "<td>" +
-        x.sources +
-        "</td>" +
-        '<td><a href="' +
-        appUrl(req) +
-        url +
-        '">' +
-        appUrl(req) +
-        url +
-        "</a></td>" +
-        '<td><img src="' +
-        baseFolder +
-        x.image +
-        '" width="320" /></td></tr>'
-      );
-    }) +
-    "</table></body></html>"
+function replacer(key, value) {
+  // Filtering out properties
+  if (value === null) {
+    return undefined;
+  }
+  return value;
+}
+
+function getResponse(wasSuccess, data, reason) {
+  return JSON.stringify(
+    {
+      success: wasSuccess,
+      data: data,
+      reason: reason,
+    },
+    replacer,
+    4
   );
 }
 
 app.use(express.static("public"));
 
+app.use((req, res, next) => {
+  console.log(`Request Received: ${new Date()}`);
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 app.get("/", (req, res) => {
   res.status(200);
   res.contentType("text/html");
-  res.send(getEmptyRequest(req));
+  res.send(emptyRequest(req, templates));
 });
 
-app.get("/:template", async (req, res) => {
-  res.status(200);
-  res.send();
+app.get("/template/:template/random", (req, res) => {
+  var templateName = req.params["template"];
+  var template = templates.find((x) => x.name == templateName);
+  if (template == null) {
+    res.status(400);
+    res.send(
+      getResponse(
+        false,
+        null,
+        "Malformed Request; Template '" +
+          templateName +
+          "' not found. Double check input and try again"
+      )
+    );
+  } else {
+    res.status(200);
+    res.send();
+  }
+});
+
+app.get("/template/:template", async (req, res) => {
+  var templateName = req.params["template"];
+  var template = templates.find((x) => x.name == templateName);
+  if (template == null) {
+    res.status(400);
+    res.send(
+      getResponse(
+        false,
+        null,
+        "Malformed Request; Template '" +
+          templateName +
+          "' not found. Double check input and try again"
+      )
+    );
+  } else {
+    if (req.query === undefined) {
+      res.status(400);
+      res.send(
+        getResponse(
+          false,
+          null,
+          "Malformed Request; Sources not given. Double check input and try again"
+        )
+      );
+    } else {
+      var sourceCount = Object.keys(req.query).length;
+      if (template.sources <= sourceCount) {
+        await modifyimage(template, req.query)
+          .catch((reason) => {
+            console.log(reason);
+            res.status(500);
+            res.send(getResponse(false, null, "Internal Server Error"));
+          })
+          .then((image) => {
+            if (image !== undefined) {
+              res.contentType("png");
+              res.status(200);
+              image.png().pipe(res);
+            }
+          });
+      } else {
+        res.status(400);
+        res.send(
+          getResponse(
+            false,
+            null,
+            "Malformed Request; Not enough sources given. Template '" +
+              template.name +
+              "' requires " +
+              template.sources +
+              " source images. Double check input and try again"
+          )
+        );
+      }
+    }
+  }
 });
 
 app.listen(port, () =>
