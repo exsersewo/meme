@@ -1,6 +1,6 @@
 # Skuld.Meme
 
-A Web API that uses [Express](https://expressjs.com/) & [GM](http://aheckmann.github.io/gm/) to generate some memes.
+A Web API that uses [Express](https://expressjs.com/) & [Sharp](https://github.com/lovell/sharp) to generate some memes.
 
 # Hosting
 
