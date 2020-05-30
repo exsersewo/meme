@@ -62,26 +62,6 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/template/:template/random", (req, res) => {
-  var templateName = req.params["template"];
-  var template = templates.find((x) => x.name == templateName);
-  if (template == null) {
-    res.status(400);
-    res.send(
-      getResponse(
-        false,
-        null,
-        "Malformed Request; Template '" +
-          templateName +
-          "' not found. Double check input and try again"
-      )
-    );
-  } else {
-    res.status(200);
-    res.send();
-  }
-});
-
 app.get("/template/:template", async (req, res) => {
   var templateName = req.params["template"];
   var template = templates.find((x) => x.name == templateName);
