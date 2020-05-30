@@ -33,6 +33,15 @@ function getResponse(wasSuccess, data, reason) {
   );
 }
 
+function getTemplates() {
+  return new Promise((resolve, reject) => {
+    var endpoints = templates.map((x) => {
+      return { endpoint: x.name, sources: x.sources };
+    });
+    resolve(getResponse(true, endpoints));
+  });
+}
+
 app.use(express.static("public"));
 
 app.use((req, res, next) => {
@@ -46,13 +55,11 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.status(200);
-  res.contentType("application/json");
-  var endpoints = [];
-  templates.forEach((x) => {
-    endpoints.push(...{ endpoint: x.name, sources: x.sources });
+  getTemplates().then((x) => {
+    res.status(200);
+    res.contentType("application/json");
+    res.send(x);
   });
-  res.send(getResponse(true, endpoints));
 });
 
 app.get("/template/:template/random", (req, res) => {
