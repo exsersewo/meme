@@ -1,0 +1,12 @@
+version: "3"
+
+networks:
+  default:
+    external:
+      name: kong-net
+
+services:
+  app:
+    image: node
+    build: .
+    env_file: .env
