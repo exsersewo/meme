@@ -3,7 +3,7 @@ const express = require("express"),
   modifyimage = require("./imageManipulation"),
   emptyRequest = require("./default"),
   app = express(),
-  port = process.env.SKMEME_PORT || 4000;
+  port = process.env.API_PORT || 4000;
 
 //https://stackoverflow.com/a/1179377
 function strcmp(str1, str2) {
