@@ -1,8 +1,12 @@
 version: "3"
+
+networks:
+  default:
+    external:
+      name: kong-net
+
 services:
-  SkuldMeme:
+  app:
     image: node
     build: .
     env_file: .env
-    ports:
-      - "${API_PORT}:${API_PORT}"

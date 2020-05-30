@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express"),
   modifyimage = require("./imageManipulation"),
-  emptyRequest = require("./default"),
   app = express(),
   port = process.env.API_PORT || 4000;
 
@@ -48,8 +47,12 @@ app.use((req, res, next) => {
 
 app.get("/", (req, res) => {
   res.status(200);
-  res.contentType("text/html");
-  res.send(emptyRequest(req, templates));
+  res.contentType("application/json");
+  var endpoints = [];
+  templates.forEach((x) => {
+    endpoints.push(...{ endpoint: x.name, sources: x.sources });
+  });
+  res.send(getResponse(true, endpoints));
 });
 
 app.get("/template/:template/random", (req, res) => {
